@@ -18,3 +18,9 @@ export interface BatProps{
   y:number,
   width:number
 }
+
+export interface GyroType{
+  alpha:number,
+  beta:number,
+  gamma:number
+}

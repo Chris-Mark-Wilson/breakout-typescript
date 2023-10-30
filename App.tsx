@@ -10,6 +10,9 @@ import { Ball } from './components/Ball';
 import { BallProps } from './types';
 import { Bat } from './components/Bat';
 import { BatProps } from './types';
+import { GyroType } from './types';
+import { getPermission } from './utils/getPermisson';
+import { getGyroData } from './utils/getGyroData';
 
 export default function App() {
   const windowWidth = Dimensions.get('window').width;
@@ -19,8 +22,9 @@ export default function App() {
   const[brickArray,setBrickArray]=useState<Array<BrickType>>([])
   const [ballCoords,setBallCoords]=useState<BallProps>({x:0,y:0})
  const [bat,setBat]=useState<BatProps>({x:0,y:0,width:50})
+ const [gyro,setGyro]=useState<GyroType>({alpha:0,beta:0,gamma:0})
 
-
+//initial setup
 useEffect(()=>{
   const startY=windowHeight-60;
   const startX=windowWidth/2;
@@ -37,7 +41,26 @@ setBallCoords((coords)=>{
 }
   )
 console.log(brickArray.length)
+
+ getPermission()
+.then(response=>{
+  console.log(response)
+})
+
 },[])
+//end initial setup
+useEffect(()=>{
+  getGyroData(setGyro)
+
+setBat((curr):BatProps=>{
+  const newPos={...curr}
+newPos.x+=gyro.beta*100
+if(newPos.x<0)newPos.x=0
+if(newPos.x>windowWidth-bat.width)newPos.x=windowWidth-bat.width
+  return newPos
+})
+},[gyro])
+
   
   return (
     <>

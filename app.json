@@ -1,6 +1,6 @@
 {
   "expo": {
-  "name": "breakout-typescript",
+    "name": "breakout-typescript",
     "slug": "breakout-typescript",
     "version": "1.0.0",
     "orientation": "landscape",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bigsegs.breakouttypescript"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "adab870c-ff7c-4222-9ba8-b7efa559b8be"
+      }
     }
   }
 }

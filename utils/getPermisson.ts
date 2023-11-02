@@ -1,5 +1,5 @@
-import { GyroType } from "../types"
-import { DeviceMotion, Gyroscope } from "expo-sensors"
+
+import { DeviceMotion} from "expo-sensors"
 
 export const getPermission=()=>{
 return DeviceMotion.getPermissionsAsync()

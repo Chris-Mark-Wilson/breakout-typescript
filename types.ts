@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export interface BrickType {
     id:number,
   height:number,
@@ -11,7 +13,8 @@ export interface WallProps{
 }
 export interface BallProps{
   x:number,
-  y:number
+  y:number,
+  direction:number
 }
 export interface BatProps{
   x:number,
@@ -19,8 +22,26 @@ export interface BatProps{
   width:number
 }
 
-export interface GyroType{
+export interface MotionDataType{
   alpha:number,
   beta:number,
   gamma:number
+}
+
+export interface GameProviderProps{
+  children:ReactNode
+}
+export interface  GameContextProps {
+  ballCoords: BallProps;
+  setBallCoords: React.Dispatch<React.SetStateAction<BallProps>>;
+  gameOver:Boolean;
+  setGameOver:React.Dispatch<React.SetStateAction<boolean>>;
+  batProps:BatProps;
+  setBatProps:React.Dispatch<React.SetStateAction<BatProps>>;
+  windowWidth:number;
+  windowHeight:number;
+  motionData:MotionDataType;
+  setMotionData:React.Dispatch<React.SetStateAction<MotionDataType>>;
+  brickArray:BrickType[];
+  setBrickArray:React.Dispatch<React.SetStateAction<BrickType[]>>;
 }

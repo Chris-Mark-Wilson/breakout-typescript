@@ -48,6 +48,6 @@ setCount(count=>count+1)
       }, [count]);
 
 return(
-    <View style={{width:batProps.width,height:10,backgroundColor:"black",position:"absolute",top:batProps.y,left:batProps.x}}></View>
+    <View style={{width:batProps.width,height:10,backgroundColor:"black",position:"absolute",top:batProps.y,left:batProps.x,borderTopWidth:10,borderRadius:batProps.width/2}}></View>
 )
 }

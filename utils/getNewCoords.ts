@@ -91,17 +91,36 @@ export const getNewCoords = (
       //hit the bat
       if (x <= bat.x + bat.width / 2) {
         //left hand side
-        console.log("hit left");
-        direction =
-          ((x - bat.x) / (bat.width / 2 - bat.x)) * (270 - direction) + 90;
+        console.log("hit left at "+direction);
+        let angleOfIncidence:number;
+if(direction>180){
+    angleOfIncidence=270-direction
+}else if(direction<180){
+    angleOfIncidence=90-direction
+} else angleOfIncidence=0
+console.log("angle of incidence "+angleOfIncidence)
+//ok so far...
+
+let impactPoint=(x-bat.x)/(((bat.width/2)+bat.x)-bat.x)
+console.log("impact point "+impactPoint," x=",x," bat.x=",bat.x)
+//ok again...
+
+//this bits wrong
+direction=(angleOfIncidence+impactPoint) + (270-angleOfIncidence)
+        
+console.log("new direction "+direction)
+
       }
       if (x >= bat.x + bat.width / 2) {
         //right hand side
         console.log("hit right");
-        direction =
-          ((x - bat.x) / (bat.width / 2 - bat.x)) * (90 - direction) - 90;
+        direction =direction+90
+
+     
+
       }
     }
   }
+  
   setBallCoords({ x, y, direction });
 }; //end function

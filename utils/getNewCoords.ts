@@ -50,7 +50,7 @@ export const getNewCoords = (
   }
 
   //got new position, check borders
-  if (x >= scrWidth - 10) {
+  if (x >= scrWidth - 20) {
     // hit rh side
 
     if (direction < 90) {

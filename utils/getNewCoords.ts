@@ -15,23 +15,23 @@ export const getNewCoords = (
   // calculate new position based on direction
 
   if (direction > 0 && direction < 90) {
-    xv = Math.cos((direction * Math.PI) / 180);
-    yv = Math.sin((direction * Math.PI) / 180);
+    xv = Math.round(Math.cos((direction * 3.14) / 180));
+    yv = Math.round(Math.sin((direction * 3.14) / 180));
     x += xv * speed;
     y -= yv * speed;
   } else if (direction > 90 && direction < 180) {
-    xv = Math.cos(((direction - 90) * Math.PI) / 180);
-    yv = Math.sin(((direction - 90) * Math.PI) / 180);
+    xv = Math.round(Math.cos(((direction - 90) * 3.14) / 180));
+    yv = Math.round(Math.sin(((direction - 90) * 3.14) / 180));
     x += xv * speed;
     y += yv * speed;
   } else if (direction > 180 && direction < 270) {
-    xv = Math.cos(((direction - 180) * Math.PI) / 180);
-    yv = Math.sin(((direction - 180) * Math.PI) / 180);
+    xv = Math.round(Math.cos(((direction - 180) * 3.14) / 180));
+    yv = Math.round(Math.sin(((direction - 180) * 3.14) / 180));
     x -= xv * speed;
     y += yv * speed;
   } else if (direction > 270 && direction < 360) {
-    xv = Math.cos(((direction - 270) * Math.PI) / 180);
-    yv = Math.cos(((direction - 270) * Math.PI) / 180);
+    xv = Math.round(Math.cos(((direction - 270) * 3.14) / 180));
+    yv = Math.round(Math.cos(((direction - 270) * 3.14) / 180));
     x -= xv * speed;
     y -= yv * speed;
   }
@@ -92,6 +92,7 @@ export const getNewCoords = (
       if (x <= bat.x + bat.width / 2) {
         //left hand side
         console.log("hit left at "+direction);
+
         let angleOfIncidence:number;
 if(direction>180){
     angleOfIncidence=270-direction
@@ -105,8 +106,8 @@ let impactPoint=(x-bat.x)/(((bat.width/2)+bat.x)-bat.x)
 console.log("impact point "+impactPoint," x=",x," bat.x=",bat.x)
 //ok again...
 
-//this bits wrong
-direction=(angleOfIncidence+impactPoint) + (270-angleOfIncidence)
+//this bits now right..
+direction=270+((1-impactPoint)*angleOfIncidence)
         
 console.log("new direction "+direction)
 
@@ -114,9 +115,23 @@ console.log("new direction "+direction)
       if (x >= bat.x + bat.width / 2) {
         //right hand side
         console.log("hit right");
-        direction =direction+90
 
-     
+        let angleOfIncidence:number;
+        if(direction>180){
+            angleOfIncidence=270-direction
+        }else if(direction<180){
+            angleOfIncidence=90-direction
+        } else angleOfIncidence=0
+        console.log("angle of incidence "+angleOfIncidence)
+        //ok so far...
+        
+        let impactPoint=(x-((bat.x)+bat.width/2))/(((bat.width)+bat.x)-((bat.x)+bat.width/2))
+
+        console.log("impact point "+impactPoint," x=",x," bat.x=",bat.x)
+        
+        direction=90-((1-impactPoint)*angleOfIncidence)
+
+        console.log("new direction "+direction)
 
       }
     }

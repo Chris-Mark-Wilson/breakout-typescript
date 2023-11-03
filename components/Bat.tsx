@@ -16,15 +16,17 @@ export const Bat=()=>{
         getPermission().then((response) => {
             if (response.granted) {
               addMotionListener(setMotionData);
+              setBatProps((bat) => {
+                const newBat={...bat}
+                newBat.x= windowWidth / 2 - bat.width / 2
+                newBat.y=windowHeight - 50,
+                newBat.width=100
+                  return newBat
+                });
+                console.log("set bat",batProps.width)
             }
         })
-        setBatProps((bat) => {
-            return {
-              x: windowWidth / 2 - bat.width / 2,
-              y: windowHeight - 50,
-              width: 50,
-            };
-          });
+
     },[])
 
     useEffect(()=>{
@@ -40,8 +42,8 @@ setCount(count=>count+1)
             const newPos = { ...curr };
             newPos.x += motionData.beta * 100;
             if (newPos.x < 0) newPos.x = 0;
-            if (newPos.x > windowWidth - batProps.width)
-              newPos.x = windowWidth - batProps.width;
+            if (newPos.x > windowWidth - curr.width)
+              newPos.x = windowWidth - curr.width;
             return newPos;
           });
         }

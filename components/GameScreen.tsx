@@ -14,6 +14,14 @@ export const GameScreen = () => {
   gameOver,setGameOver
   } = gameContext;
 
+
+
+
+
+
+
+  
+
   const onPressHandler = () => {
     setGameOver(false);
   };

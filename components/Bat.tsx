@@ -23,7 +23,7 @@ export const Bat=()=>{
                 newBat.width=100
                   return newBat
                 });
-                console.log("set bat",batProps.width)
+               
             }
         })
 
@@ -46,6 +46,7 @@ setCount(count=>count+1)
               newPos.x = windowWidth - curr.width;
             return newPos;
           });
+         
         }
       }, [count]);
 

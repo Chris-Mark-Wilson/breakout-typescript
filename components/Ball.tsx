@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { BallProps, GameContextProps } from "../types";
 
 import { useState, useEffect, useContext } from "react";
-import { getNewCoords } from "../utils/getNewCoords";
+import { setNewCoords } from "../utils/setNewCoords";
 import { GameContext } from "../contexts/gameContext";
 
 export const Ball = (): JSX.Element => {
@@ -31,7 +31,7 @@ export const Ball = (): JSX.Element => {
   useEffect(() => {
     if (!gameOver) {
       setTimeout(() => {
-        getNewCoords(
+        setNewCoords(
           ballCoords,
           setBallCoords,
           windowWidth,

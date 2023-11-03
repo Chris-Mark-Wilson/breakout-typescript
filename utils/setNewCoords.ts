@@ -1,6 +1,6 @@
 import { BallProps } from "../types";
 
-export const getNewCoords = (
+export const setNewCoords = (
   ballCoords: BallProps,
   setBallCoords: React.Dispatch<React.SetStateAction<BallProps>>,
   scrWidth: number,
@@ -15,23 +15,27 @@ export const getNewCoords = (
   // calculate new position based on direction
 
   if (direction > 0 && direction < 90) {
-    xv = Math.round(Math.cos((direction * 3.14) / 180));
-    yv = Math.round(Math.sin((direction * 3.14) / 180));
+    xv = Math.cos((direction * 3.14) / 180);
+    yv = Math.sin((direction * 3.14) / 180);
     x += xv * speed;
     y -= yv * speed;
+    console.log("xv:",yv," xy:",yv," direcion:",direction)
   } else if (direction > 90 && direction < 180) {
-    xv = Math.round(Math.cos(((direction - 90) * 3.14) / 180));
-    yv = Math.round(Math.sin(((direction - 90) * 3.14) / 180));
+    xv = Math.cos(((direction - 90) * 3.14) / 180);
+    yv = Math.sin(((direction - 90) * 3.14) / 180);
     x += xv * speed;
     y += yv * speed;
+    console.log("xv:",yv," xy:",yv," direcion:",direction)
   } else if (direction > 180 && direction < 270) {
-    xv = Math.round(Math.cos(((direction - 180) * 3.14) / 180));
-    yv = Math.round(Math.sin(((direction - 180) * 3.14) / 180));
+    xv = Math.cos(((direction - 180) * 3.14) / 180);
+    yv = Math.sin(((direction - 180) * 3.14) / 180);
     x -= xv * speed;
     y += yv * speed;
+    console.log("xv:",yv," xy:",yv," direcion:",direction)
   } else if (direction > 270 && direction < 360) {
-    xv = Math.round(Math.cos(((direction - 270) * 3.14) / 180));
-    yv = Math.round(Math.cos(((direction - 270) * 3.14) / 180));
+    xv = Math.cos(((direction - 270) * 3.14) / 180);
+    yv = Math.sin(((direction - 270) * 3.14) / 180);
+    console.log("xv:",yv," xy:",yv," direcion:",direction)
     x -= xv * speed;
     y -= yv * speed;
   }
@@ -129,7 +133,7 @@ console.log("new direction "+direction)
 
         console.log("impact point "+impactPoint," x=",x," bat.x=",bat.x)
         
-        direction=90-((1-impactPoint)*angleOfIncidence)
+        direction=90-((impactPoint)*angleOfIncidence)
 
         console.log("new direction "+direction)
 
@@ -139,3 +143,4 @@ console.log("new direction "+direction)
   
   setBallCoords({ x, y, direction });
 }; //end function
+
